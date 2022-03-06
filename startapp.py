@@ -12,7 +12,7 @@ def cbot():
         splitlist = list(b.split(" "))
         for sp in splitlist:
             if d == sp:
-                print("Ok let me check that for you! Hold Tight")
+                print("Ok let me check that for you!")
 
 cbot()
 
