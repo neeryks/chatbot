@@ -1,51 +1,46 @@
-from ipaddress import collapse_addresses
-from pydoc import splitdoc
 import pandas as pd
 
-
-## MAking Models For Chatbot #
-def regis():
-    emai = input("Enter Email : ")
-    passw = input("Enter Password : ")
-    nam = input("Enter Full Name : ")
-    new = {'email':[emai],'password':[passw],'name':[nam]}
-    df = pd.DataFrame(new)
-    df1 = pd.read_csv("cred.txt")
-    f = pd.concat([df1,df],ignore_index=True)
-    f.to_csv('cred.txt')
+class cred():
     
-def cbot():
-    print("Hi I am Cbot. Please Enter your Email Id to login or type 'Guest' to continue as it is : ")
-    b = input().upper()
-    if b == "GUEST":
-        print('Hello I am Cbot How Can i Help You ?')
+    def __init__(self,email,password,name):
+        self.email = email
+        self.password = password
+        self.name = name
+        self.saved_df = pd.read_csv("cred.txt")
     
-    else:
-        cdata = pd.read_csv("cred.txt")
-        count = 0
-        for data in cdata['email']:
-            count = count + 1
-            while 6>5:
-                if b == data.upper():
-                    passchk = input("Enter Password : ")
-                    if passchk == cdata['password'][count-1]:
-                        print("Login Sucessful")
-                    else:
-                        print("Wrong password , Please Renter")
-                    print("Hi {}. How Can I Help You ?".format(cdata['name'][count-1]))
-                    break
+    def register(reg):
+        auth_df=pd.DataFrame(columns=['Email','Password','Name'])  
+        pd.concat([reg.saved_df,auth_df.append({'Email':email,'Password':password,'Name':name})],ignore_index=True).to_csv("cred.txt",index=False)
+        cred.login()
 
+    def login(log):
+        index = -1
+        for checkemail in log.saved_df['Email']:
+            index += 1
+            if log.email == checkemail:
+                if password == log.saved_df['Password'][index]:
+                    app.cbot(email,name)
                 else:
-                    print("No User Found, Register Now !")
-                    regis()
-                    break
+                    keypress = input("Wrong Email or Password, Type 'L' to Login Again or 'R' to Register").upper()
+                    if keypress == "L":
+                        cred.login()
+                    elif keypress == "R":
+                        cred.register()
+            else:
+                keypress_note = input("Email Address Not Found, type 'L' to login or 'R' to Register").upper()
+                if keypress_note == 'L':
+                    cred.login()
+                elif keypress_note =='R':
+                    cred.register()
 
 
 
-cbot()
 
+email = input("Enter Email: ")
+password = input("Enter Password: ")
+name = input("Enter Name: ")
 
-
+cred(email,password,name).register()
 
 
 
