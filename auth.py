@@ -10,7 +10,7 @@ class cred():
     
     def register(reg):
         auth_df=pd.DataFrame(columns=['Email','Password','Name'])  
-        pd.concat([reg.saved_df,auth_df.append({'Email':email,'Password':password,'Name':name})],ignore_index=True).to_csv("cred.txt",index=False)
+        pd.concat([reg.saved_df,auth_df.append({'Email':email,'Password':password,'Name':name})],ignore_index=True).to_csv("cred.txt")
         cred.login()
 
     def login(log):
@@ -40,7 +40,7 @@ email = input("Enter Email: ")
 password = input("Enter Password: ")
 name = input("Enter Name: ")
 
-cred(email,password,name).register()
+cred(email,password,name).login()
 
 
 
