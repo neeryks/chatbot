@@ -1,0 +1,19 @@
+<html>
+  <body>
+    <form>
+      <label>Enter some text:</label>
+      <input type="text" id="text-input">
+      <br>
+      <button type="submit" onclick="displayText()">Submit</button>
+    </form>
+    <br>
+    <p id="display"></p>
+    
+    <script>
+      function displayText() {
+        var inputText = document.getElementById("text-input").value;
+        document.getElementById("display").innerHTML = inputText;
+      }
+    </script>
+  </body>
+</html>
