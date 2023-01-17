@@ -28,6 +28,8 @@ class Responder():
         return 0
     def code_complete():
         pass
+    def test():
+        pass
 
 
 if __name__ == "__main__":
